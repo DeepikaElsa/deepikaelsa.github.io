@@ -39,8 +39,26 @@
     .map(function (li) { return document.getElementById(li.dataset.target); })
     .filter(Boolean);
 
+  // The bubble is positioned from measured geometry rather than CSS steps.
+  // The CSS rules assume fixed 70px slots, which only holds on desktop; on a
+  // phone the slots are a share of the viewport, so measuring covers both.
+  var navList = document.querySelector(".navigation ul");
+  var indicator = navList && navList.querySelector(".indicator");
+  var activeIndex = 0;
+
+  function moveIndicator(index) {
+    if (!indicator || !items[index]) return;
+    var li = items[index].getBoundingClientRect();
+    var ul = navList.getBoundingClientRect();
+    var centre = (li.left - ul.left) + li.width / 2;
+    indicator.style.left = "0px";
+    indicator.style.transform = "translateX(" + (centre - indicator.offsetWidth / 2) + "px)";
+  }
+
   function setActive(index) {
+    activeIndex = index;
     items.forEach(function (li, i) { li.classList.toggle("active", i === index); });
+    moveIndicator(index);
   }
 
   items.forEach(function (li, i) {
@@ -69,7 +87,8 @@
       window.requestAnimationFrame(spy);
     }
   }, { passive: true });
-  window.addEventListener("resize", spy);
+  // slot widths change with the viewport, so re-measure the bubble too
+  window.addEventListener("resize", function () { spy(); moveIndicator(activeIndex); });
   spy();
 
   /* ---------- reveal on scroll ---------- */

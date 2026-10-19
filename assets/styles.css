@@ -999,6 +999,7 @@ h1,h2,h3,h4{margin:0 0 .5em;line-height:1.2;font-weight:700;color:var(--heading)
    the drafting-sheet hero. Palette and themes are unchanged.
    ========================================================= */
 .welcome{display:none;}
+.skill-dial{display:none;}
 
 @media (max-width:640px){
   body{
@@ -1143,6 +1144,54 @@ h1,h2,h3,h4{margin:0 0 .5em;line-height:1.2;font-weight:700;color:var(--heading)
   .skill-card{border-top-width:3px;}
   /* the bleed must match the card's mobile padding, not the desktop 1.1rem */
   .skill-marquee{margin-inline:-1.25rem;padding-inline:1.25rem;}
+
+  /* ---------- "Facilities"-style summary row ---------- */
+  .skill-dial{
+    display:flex;
+    justify-content:space-between;
+    gap:.3rem;
+    list-style:none;
+    margin:0 0 1.3rem;
+    padding:1.1rem .75rem;
+    background:var(--paper);
+    border:1px solid var(--line-soft);
+    border-radius:22px;
+    box-shadow:0 14px 30px -22px rgba(52,77,117,.6);
+  }
+  [data-theme="dark"] .skill-dial{box-shadow:0 14px 30px -20px rgba(0,0,0,.85);}
+  .skill-dial li{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.4rem;
+    font-size:.56rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    font-family:var(--font-display);
+    color:var(--muted);
+  }
+  .dial-ic{
+    display:grid;
+    place-items:center;
+    width:40px;height:40px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    color:var(--accent-deep);
+  }
+  .dial-ic svg{width:19px;height:19px;fill:none;stroke:currentColor;}
+  .skill-dial li:first-child .dial-ic,
+  .skill-dial li:nth-child(3) .dial-ic{
+    background:var(--indigo);
+    border-color:var(--indigo);
+    color:#F4F9FF;
+  }
+  [data-theme="dark"] .skill-dial li:first-child .dial-ic,
+  [data-theme="dark"] .skill-dial li:nth-child(3) .dial-ic{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#FFF7FC;
+  }
   .award-list li{border-style:solid;padding-left:2.4rem;}
 
   /* ---------- pill buttons ---------- */
@@ -1184,10 +1233,20 @@ h1,h2,h3,h4{margin:0 0 .5em;line-height:1.2;font-weight:700;color:var(--heading)
   }
   .navigation ul{width:100%;}
   .navigation ul li{width:16.6667%;}
-  .indicator{display:none;}
-  .navigation ul li.active a .icon{transform:translateY(-8px);color:var(--indicator);}
   .navigation ul li a .icon svg{width:21px;height:21px;}
-  .navigation ul li a .text{font-size:.54rem;letter-spacing:.01em;bottom:12px;}
+  .navigation ul li a .text{font-size:.54rem;letter-spacing:.01em;bottom:10px;}
+
+  /* The sliding bubble is kept on phones. Its position is set by script.js
+     from measured geometry (the slots are a percentage of the viewport here,
+     not the fixed 70px the desktop rules assume), so only size lives in CSS. */
+  .indicator{
+    display:block;
+    width:54px;
+    height:54px;
+    top:-27px;
+    border-width:5px;
+  }
+  .navigation ul li.active a .icon{transform:translateY(-35px);color:#FFF7FC;}
 }
 
 /* ---------- 14. MOTION / PRINT ---------- */
