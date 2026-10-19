@@ -54,6 +54,29 @@
 
   <!-- ============ 01 HOME ============ -->
   <section id="home" class="section hero">
+
+    <!-- App-style welcome screen. Shown only on phones, where it replaces the
+         desktop hero; the real <h1> below stays in the document for semantics
+         and search engines, so this uses <p> and is hidden from assistive tech. -->
+    <div class="welcome" aria-hidden="true">
+      <div class="welcome-art">
+        <img class="art-light" src="assets/plate-light.jpg" alt="" width="480" height="600" />
+        <img class="art-dark" src="assets/plate-dark.jpg" alt="" width="480" height="600" />
+      </div>
+      <p class="welcome-kicker">Welcome to</p>
+      <p class="welcome-name">Deepika<br />Elsa Joseph</p>
+      <p class="welcome-role">AI/ML &amp; Data Science Engineer</p>
+      <p class="welcome-lede">I build the pipeline layer, not just the model on top of it.</p>
+      <ul class="welcome-stats">
+        <li><b>2</b><span>IEEE papers</span></li>
+        <li><b>89.3%</b><span>retrieval</span></li>
+        <li><b>100%</b><span>on-device</span></li>
+      </ul>
+      <a class="welcome-cta" href="#about">Get started
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-7 7 7-7 7" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
     <div class="wrap hero-grid">
 
       <div class="hero-left reveal">
